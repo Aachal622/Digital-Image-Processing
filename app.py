@@ -25,7 +25,7 @@ st.title("""
         Addition and Substraction on Image
          """
          )
-file = st.file_uploader("Please upload image", type=("jpg", "png"))
+url = st.file_uploader("Please upload image", type=("jpg", "png"))
 
 import cv2
 from  PIL import Image, ImageOps
@@ -35,7 +35,7 @@ def import_and_predict(image):
   #img_reshap= np.expand_dims(image, axis=0)
   #img_reshap = preprocess_input(img_reshap)
 
-   img1=cv2.imread(file,1)
+   img1=cv2.imread(url,1)
    img2=np.ones(img1.shape, dtype="uint8")*100
    #cv2_imshow(img1)
    #cv2_imshow(img2)
@@ -61,13 +61,16 @@ else:
   st.image(file,caption='Uploaded Image.', use_column_width=True)
     
 if st.button("Apply Addition on image"):
-   img1=cv2.imread(file,1)
+   img1=cv2.imread(url,1)
    img2=np.ones(img1.shape, dtype="uint8")*100
    img=img1+img2
    print(img)
 
 if st.button("Apply Substraction on image"):
-  result=import_and_predict(image)
+   img1=cv2.imread(url,1)
+   img2=np.ones(img1.shape, dtype="uint8")*100
+   img=img1-img2
+   print(img)
   
 if st.button("About"):
   st.header(" Aachal Kala")
