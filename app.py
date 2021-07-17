@@ -1,10 +1,10 @@
 import streamlit as st 
 from PIL import Image
 import pickle
+import cv2 
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-import tensorflow as tf
 from keras.preprocessing import image
 import os
 from werkzeug.utils import secure_filename
@@ -24,13 +24,10 @@ html_temp = """
 st.markdown(html_temp,unsafe_allow_html=True)
   
 st.title("""
-        Collor Palette
+        Addition and Substraction on Image
          """
          )
-file= st.file_uploader("Please upload image", type=("jpg", "png"))
-R = st.slider('R', min_value=0, max_value=255, step=1)
-G = st.slider('G', min_value=0, max_value=255, step=1)
-B = st.slider('B', min_value=0, max_value=255, step=1)
+url= st.file_uploader("Please upload image", type=("jpg", "png"))
 
 import cv2
 from  PIL import Image, ImageOps
@@ -40,9 +37,39 @@ def import_and_predict(image_data):
   #img_reshap= np.expand_dims(image, axis=0)
   #img_reshap = preprocess_input(img_reshap)
    
-  image_data[:] = [R,G,B]
-  st.image(image_data, use_column_width=True)
-  return 0
+img1=cv2.imread(url,1)
+img2=np.ones(img1.shape, dtype="uint8")*100
+#cv2_imshow(img1)
+#cv2_imshow(img2)
+#@title Mathematical Operations on Images {run:"auto"} 
+Operation = '-' #@param ["+", "-"] {allow-input: true}
+if Operation=='+':
+  img=img1+img2
+if Operation=='-':
+  img=img1-img2
+
+print('Orignal Image:')
+cv2_imshow(img1)
+print('Operated Image:')
+cv2_imshow(img)
+
+
+img3=cv2.imread(url,1)
+img4=np.ones(img3.shape, dtype="uint8")*100
+#cv2_imshow(img1)
+#cv2_imshow(img2)
+#@title Mathematical Operations on Images {run:"auto"} 
+Operation = '+' #@param ["+", "-"] {allow-input: true}
+if Operation=='+':
+  img5=img3+img4
+if Operation=='-':
+  img5=img3-img4
+
+print('Orignal Image:')
+cv2_imshow(img3)
+print('Operated Image:')
+cv2_imshow(img5)
+
 if file is None:
   st.text("Please upload an Image file")
 else:
