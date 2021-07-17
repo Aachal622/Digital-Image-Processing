@@ -1,20 +1,22 @@
 import streamlit as st 
 from PIL import Image
 import pickle
-import cv2 
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-import os
+import cv2
+#import tensorflow as tf
+#from keras.preprocessing import image
 from werkzeug.utils import secure_filename
 st.set_option('deprecation.showfileUploaderEncoding', False)
+#from keras.models import load_model
 
 html_temp = """
-   <div class="" style="background-color:gray;" >
+   <div class="" style="background-color:salmon;" >
    <div class="clearfix">           
    <div class="col-md-12">
-   <center><p style="font-size:40px;color:white;margin-top:10px;">Poornima Institute of Engineering & Technology</p></center> 
-   <center><p style="font-size:30px;color:white;margin-top:10px;">Digital Image Processing lab</p></center> 
+   <center><p style="font-size:40px;color:white;margin-top:10px;">Aachal Kala - PIET18CS001</p></center> 
+   <center><p style="font-size:30px;color:white;margin-top:10px;">Digital Image Processing End-Term Examination</p></center> 
    </div>
    </div>
    </div>
@@ -22,64 +24,62 @@ html_temp = """
 st.markdown(html_temp,unsafe_allow_html=True)
   
 st.title("""
-        Addition and Substraction on Image
+         Addition and Substraction on Image
          """
          )
-url = st.file_uploader("Please upload image", type=("jpg", "png"))
 
-import cv2
-from  PIL import Image, ImageOps
-def import_and_predict(image):
-  #img = image.load_img(image_data, target_size=(224, 224))
-  #image = image.img_to_array(img)
-  #img_reshap= np.expand_dims(image, axis=0)
-  #img_reshap = preprocess_input(img_reshap)
 
-   img1=cv2.imread(url,1)
-   img2=np.ones(img1.shape, dtype="uint8")*100
-   #cv2_imshow(img1)
-   #cv2_imshow(img2)
-   #@title Mathematical Operations on Images {run:"auto"} 
-   Operation = '-' #@param ["+", "-"] {allow-input: true}
-   if Operation=='+':
-     img=img1+img2
-   if Operation=='-':
-     img=img1-img2
+img1= st.file_uploader("Please upload image 1", type=("jpg", "png"))
+img2= st.file_uploader("Please upload image 2", type=("jpg", "png"))
+option = st.selectbox('Choose Appropriate option',(' Addition', 'Substraction'))
 
-   print('Orignal Image:')
-   cv2_imshow(img1)
-   print('Operated Image:')
-   cv2_imshow(img)
-   st.image(image_data, use_column_width=True)
-   return 0
-
-if url is None:
-  st.text("Please upload an Image file")
+if img1 is None:
+  st.text("Please upload an Image 1")
 else:
-  file_bytes = np.asarray(bytearray(url.read()), dtype=np.uint8)
+  file_bytes = np.asarray(bytearray(img1.read()), dtype=np.uint8)
   image = cv2.imdecode(file_bytes, 1)
-  st.image(url,caption='Uploaded Image.', use_column_width=True)
-    
-if st.button("Apply Addition on image"):
-   img1=cv2.imread(url,1)
-   img2=np.ones(img1.shape, dtype="uint8")*100
-   img=img1+img2
-   print(img)
+  st.image(img1,caption='Uploaded Image 1', use_column_width=True)
 
-if st.button("Apply Substraction on image"):
-   img1=cv2.imread(url,1)
-   img2=np.ones(img1.shape, dtype="uint8")*100
-   img=img1-img2
-   print(img)
+if img2 is None:
+  st.text("Please upload an Image 2")
+else:
+  file_bytes = np.asarray(bytearray(img2.read()), dtype=np.uint8)
+  image = cv2.imdecode(file_bytes, 1)
+  st.image(img2,caption='Uploaded Image 2', use_column_width=True)
+
+
+
+st.write('You selected:', option)
+
+
+from  PIL import Image, ImageOps
+def import_and_predict():
+  file_bytes1 = np.asarray(bytearray(img1.read()), dtype=np.uint8)
+  opencv_image1 = cv2.imdecode(file_bytes1, 1)
+  imga = cv2.resize(opencv_image1,(300,300))
+  file_bytes2 = np.asarray(bytearray(img2.read()), dtype=np.uint8)
+  opencv_image2 = cv2.imdecode(file_bytes2, 1)
+  imgb = cv2.resize(opencv_image2,(300,300))
+  if option == "Addition":
+     img=img1+img2
+     result = cv2.add(imga,imgb)
+  else:
+     img=img1-img2
+     result = cv2.sub(imga,imgb)
+  st.image(result,  use_column_width=True)
+  return 0 
+    
+if st.button("Click To Perform Operation"):
+  result=import_and_predict()
   
 if st.button("About"):
-  st.header(" Aachal Kala")
-  st.subheader("Student, Department of Computer Engineering")
+  st.header("Aachal Kala")
+  st.subheader("Student, Department of Computer Engineering, PIET")
 html_temp = """
-   <div class="" style="background-color:orange;" >
+   <div class="" style="background-color:white;" >
    <div class="clearfix">           
    <div class="col-md-12">
-   <center><p style="font-size:20px;color:white;margin-top:10px;">Digital Image processing Experiment</p></center> 
+   <center><p style="font-size:20px;color:black;margin-top:10px;">Digital Image processing EndTerm Lab</p></center> 
    </div>
    </div>
    </div>
