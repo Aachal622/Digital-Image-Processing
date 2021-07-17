@@ -61,13 +61,13 @@ def import_and_predict():
   opencv_image2 = cv2.imdecode(file_bytes2, 1)
   imgb = cv2.resize(opencv_image2,(300,300))
   if option == "Addition":
-     img=img1+img2
-     result = cv2.add(imga,imgb)
-     st.image(result,  use_column_width=True)
+     M=img1+img2
+     img3 = cv2.add(imga,imgb)
+     st.image(img3,  use_column_width=True)
   else:
-     img=img1-img2
-     result = cv2.sub(imga,imgb)
-     st.image(result,  use_column_width=True)
+     M=img1-img2
+     img4 = cv2.sub(imga,imgb)
+     st.image(img4,  use_column_width=True)
   return 0 
     
 if st.button("Click To Perform Operation"):
