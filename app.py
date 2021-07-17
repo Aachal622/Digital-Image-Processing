@@ -5,7 +5,6 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-from keras.preprocessing import image
 import os
 from werkzeug.utils import secure_filename
 st.set_option('deprecation.showfileUploaderEncoding', False)
