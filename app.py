@@ -61,10 +61,10 @@ else:
   st.image(file,caption='Uploaded Image.', use_column_width=True)
     
 if st.button("Apply Addition on image"):
-  result=import_and_predict(image)
+  result=import_and_predict(image_data)
 
 if st.button("Apply Substraction on image"):
-  result=import_and_predict(image)
+  result=import_and_predict(image_data)
   
 if st.button("About"):
   st.header(" Aachal Kala")
