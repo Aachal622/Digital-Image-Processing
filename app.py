@@ -50,6 +50,8 @@ def import_and_predict(image_data):
    cv2_imshow(img1)
    print('Operated Image:')
    cv2_imshow(img)
+   st.image(image_data, use_column_width=True)
+   return 0
 
 if url is None:
   st.text("Please upload an Image file")
@@ -57,8 +59,6 @@ else:
   file_bytes = np.asarray(bytearray(file.read()), dtype=np.uint8)
   image = cv2.imdecode(file_bytes, 1)
   st.image(file,caption='Uploaded Image.', use_column_width=True)
-  st.image(image_data, use_column_width=True)
-  return 0
     
 if st.button("Change Color"):
   result=import_and_predict(image)
