@@ -63,6 +63,7 @@ def import_and_predict():
   if option == "Addition":
      img=img1+img2
      result = cv2.add(imga,imgb)
+     st.image(result,  use_column_width=True)
   else:
      img=img1-img2
      result = cv2.sub(imga,imgb)
