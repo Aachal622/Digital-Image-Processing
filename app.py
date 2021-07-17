@@ -8,7 +8,6 @@ import pandas as pd
 import os
 from werkzeug.utils import secure_filename
 st.set_option('deprecation.showfileUploaderEncoding', False)
-from keras.models import load_model
 
 html_temp = """
    <div class="" style="background-color:gray;" >
@@ -51,23 +50,6 @@ def import_and_predict(image_data):
    cv2_imshow(img1)
    print('Operated Image:')
    cv2_imshow(img)
-
-
-   img3=cv2.imread(url,1)
-   img4=np.ones(img3.shape, dtype="uint8")*100
-   #cv2_imshow(img1)
-   #cv2_imshow(img2)
-   #@title Mathematical Operations on Images {run:"auto"} 
-   Operation = '+' #@param ["+", "-"] {allow-input: true}
-   if Operation=='+':
-     img5=img3+img4
-   if Operation=='-':
-     img5=img3-img4
-
-   print('Orignal Image:')
-   cv2_imshow(img3)
-   print('Operated Image:')
-   cv2_imshow(img5)
 
 if file is None:
   st.text("Please upload an Image file")
