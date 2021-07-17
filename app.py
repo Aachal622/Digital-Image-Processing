@@ -53,12 +53,12 @@ def import_and_predict(image):
    st.image(image_data, use_column_width=True)
    return 0
 
-if file is None:
+if url is None:
   st.text("Please upload an Image file")
 else:
-  file_bytes = np.asarray(bytearray(file.read()), dtype=np.uint8)
+  file_bytes = np.asarray(bytearray(url.read()), dtype=np.uint8)
   image = cv2.imdecode(file_bytes, 1)
-  st.image(file,caption='Uploaded Image.', use_column_width=True)
+  st.image(url,caption='Uploaded Image.', use_column_width=True)
     
 if st.button("Apply Addition on image"):
    img1=cv2.imread(url,1)
