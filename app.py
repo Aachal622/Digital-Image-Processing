@@ -25,7 +25,7 @@ st.title("""
         Addition and Substraction on Image
          """
          )
-url= st.file_uploader("Please upload image", type=("jpg", "png"))
+file = st.file_uploader("Please upload image", type=("jpg", "png"))
 
 import cv2
 from  PIL import Image, ImageOps
@@ -35,7 +35,7 @@ def import_and_predict(image_data):
   #img_reshap= np.expand_dims(image, axis=0)
   #img_reshap = preprocess_input(img_reshap)
 
-   img1=cv2.imread(url,1)
+   img1=cv2.imread(file,1)
    img2=np.ones(img1.shape, dtype="uint8")*100
    #cv2_imshow(img1)
    #cv2_imshow(img2)
@@ -53,7 +53,7 @@ def import_and_predict(image_data):
    st.image(image_data, use_column_width=True)
    return 0
 
-if url is None:
+if file is None:
   st.text("Please upload an Image file")
 else:
   file_bytes = np.asarray(bytearray(file.read()), dtype=np.uint8)
