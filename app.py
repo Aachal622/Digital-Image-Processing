@@ -29,7 +29,7 @@ file = st.file_uploader("Please upload image", type=("jpg", "png"))
 
 import cv2
 from  PIL import Image, ImageOps
-def import_and_predict(image_data):
+def import_and_predict(image):
   #img = image.load_img(image_data, target_size=(224, 224))
   #image = image.img_to_array(img)
   #img_reshap= np.expand_dims(image, axis=0)
@@ -61,7 +61,10 @@ else:
   st.image(file,caption='Uploaded Image.', use_column_width=True)
     
 if st.button("Apply Addition on image"):
-  result=import_and_predict(img)
+   img1=cv2.imread(file,1)
+   img2=np.ones(img1.shape, dtype="uint8")*100
+   img=img1+img2
+   print(img)
 
 if st.button("Apply Substraction on image"):
   result=import_and_predict(image)
