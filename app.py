@@ -66,7 +66,7 @@ def import_and_predict():
      st.image(img3,  use_column_width=True)
   else:
      M=imga-imgb
-     img4 = cv2.sub(imga,imgb)
+     img4 = cv2.subtract(imga,imgb)
      st.image(img4,  use_column_width=True)
   return 0 
     
