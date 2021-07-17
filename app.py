@@ -60,7 +60,10 @@ else:
   image = cv2.imdecode(file_bytes, 1)
   st.image(file,caption='Uploaded Image.', use_column_width=True)
     
-if st.button("Change Color"):
+if st.button("Apply Addition on image"):
+  result=import_and_predict(image)
+
+if st.button("Apply Substraction on image"):
   result=import_and_predict(image)
   
 if st.button("About"):
