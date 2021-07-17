@@ -66,7 +66,7 @@ def import_and_predict():
   else:
      img=img1-img2
      result = cv2.sub(imga,imgb)
-  st.image(result,  use_column_width=True)
+     st.image(result,  use_column_width=True)
   return 0 
     
 if st.button("Click To Perform Operation"):
